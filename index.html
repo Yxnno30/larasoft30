@@ -1,0 +1,106 @@
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Larasoft - Solutions Logicielles Innovantes</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="logo">Larasoft</div>
+      <ul>
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">À Propos</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-content">
+      <h1>Solutions Logicielles sur Mesure</h1>
+      <p>Nous transformons vos idées en réalité grâce à des solutions logicielles innovantes et performantes.</p>
+      <a href="#" class="cta-button">Découvrez Nos Services</a>
+    </div>
+  </section>
+
+  <section id="services">
+    <h2>Nos Services</h2>
+    <div class="services-container">
+      <div class="service">
+        <i class="fa fa-code"></i>
+        <h3>Développement Web</h3>
+        <p>Création de sites web modernes et responsives.</p>
+      </div>
+      <div class="service">
+        <i class="fa fa-mobile-alt"></i>
+        <h3>Applications Mobiles</h3>
+        <p>Développement d'applications iOS et Android.</p>
+      </div>
+      <div class="service">
+        <i class="fa fa-cloud"></i>
+        <h3>Solutions Cloud</h3>
+        <p>Mise en place et gestion de solutions cloud.</p>
+      </div>
+      <div class="service">
+        <i class="fa fa-database"></i>
+        <h3>Gestion de Données</h3>
+        <p>Solutions pour la gestion et l'analyse de vos données.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>À Propos de Nous</h2>
+    <div class="about-content">
+      <p>Larasoft est une entreprise spécialisée dans le développement de solutions logicielles innovantes.  Notre équipe d'experts passionnés met son savoir-faire au service de vos projets pour vous aider à atteindre vos objectifs.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contactez-Nous</h2>
+    <div id="form-message" class="form-message"></div>
+    <form id="contact-form" method="POST" action="process_form.php">
+      <input type="text" name="name" placeholder="Votre Nom" required>
+      <input type="email" name="email" placeholder="Votre Email" required>
+      <textarea name="message" placeholder="Votre Message" required></textarea>
+      <button type="submit">Envoyer</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Larasoft. Tous droits réservés.</p>
+  </footer>
+
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(this);
+      const messageDiv = document.getElementById('form-message');
+      
+      fetch('process_form.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        messageDiv.textContent = data.message;
+        messageDiv.className = 'form-message ' + data.status;
+        if(data.status === 'success') {
+          this.reset();
+        }
+      })
+      .catch(error => {
+        messageDiv.textContent = 'Une erreur est survenue. Veuillez réessayer.';
+        messageDiv.className = 'form-message error';
+      });
+    });
+  </script>
+</body>
+</html>
