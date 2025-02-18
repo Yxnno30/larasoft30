@@ -95,6 +95,59 @@ nav ul li a:hover {
   text-shadow: 0 0 10px var(--neon-blue);
 }
 
+/* Effets de survol pour les liens */
+a {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background: var(--cyber-gradient);
+  transition: width 0.3s ease;
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+/* Animation de pulsation pour les boutons */
+button, .btn {
+  position: relative;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+button:hover, .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px var(--neon-blue);
+}
+
+button::before, .btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(0, 243, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+button:hover::before, .btn:hover::before {
+  left: 100%;
+}
+
 /* Hero Section */
 #hero {
   background: var(--dark-bg);
@@ -145,6 +198,20 @@ nav ul li a:hover {
   transform: translateY(-2px);
 }
 
+/* Animation d'apparition des sections */
+.section {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Services Section */
 #services {
   background-color: #fff;
@@ -176,6 +243,16 @@ nav ul li a:hover {
   margin-bottom: 10px;
   color: var(--neon-blue);
   text-shadow: 0 0 10px var(--neon-blue);
+}
+
+/* Effet de flottement pour les cartes */
+.card {
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 10px 20px rgba(0, 243, 255, 0.2);
 }
 
 /* About Section */
@@ -252,6 +329,34 @@ nav ul li a:hover {
 #contact button:hover {
   box-shadow: 0 0 20px var(--neon-blue);
   transform: translateY(-2px);
+}
+
+/* Animation de chargement */
+.loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 243, 255, 0.2),
+    transparent
+  );
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  to {
+    transform: translateX(100%);
+  }
 }
 
 /* Animations */
